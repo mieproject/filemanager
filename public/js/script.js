@@ -55,11 +55,13 @@ $(document).ready(function () {
     });
 
     actions.reverse().forEach(function (action) {
-        $('.app-file-action-icons').append(
-            $('i').addClass(' hide')
-                .attr('data-action', action.name)
-                .attr('data-multiple', action.multiple)
-                .text('lol')
+        console.log(action)
+        $('.app-file-action-icons').prepend(
+            `<i class="material-icons" data-action="${action.name}" data-multiple="${action.multiple}">${action.icon}</i>`
+            // $('i').addClass('')
+                // .attr('data-action', action.name)
+                // .attr('data-multiple', action.multiple)
+                // .text('lol')
         )
     });
 

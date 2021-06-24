@@ -38,11 +38,6 @@ class LfmController extends Controller
         return view('laravel-filemanager::index')
             ->withHelper($this->helper);
     }
-    public function show_old()
-    {
-        return view('laravel-filemanager::0index')
-            ->withHelper($this->helper);
-    }
 
     /**
      * Check if any extension or config is missing.

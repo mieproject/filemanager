@@ -29,7 +29,7 @@
 
 <script>
   function moveToNewFolder($folder) {
-    $("#notify").modal('hide');
+    $("#notify").modal('close');
     var items =[];
     $("#items").find("input").each(function() {items.push(this.id)});
     performLfmRequest('domove', {

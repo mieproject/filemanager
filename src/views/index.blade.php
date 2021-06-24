@@ -555,25 +555,19 @@
       },
       {
         name: 'download',
-        icon: 'download',
+        icon: 'file_download',
         label: lang['menu-download'],
         multiple: true
       },
-      // {
-      //   name: 'preview',
-      //   icon: 'image',
-      //   label: lang['menu-view'],
-      //   multiple: true
-      // },
       {
         name: 'move',
-        icon: 'paste',
+        icon: 'open_with',
         label: lang['menu-move'],
         multiple: true
       },
       {
         name: 'resize',
-        icon: 'arrows-alt',
+        icon: 'photo_size_select_large',
         label: lang['menu-resize'],
         multiple: false
       },
@@ -585,7 +579,7 @@
       },
       {
         name: 'trash',
-        icon: 'trash',
+        icon: 'delete',
         label: lang['menu-delete'],
         multiple: true
       },

@@ -382,3 +382,10 @@ time {
   white-space: nowrap;
   content: attr(data-label);
 }
+
+.info--filename {
+  width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+}
