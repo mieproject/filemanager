@@ -2,6 +2,7 @@
 
 namespace UniSharp\LaravelFilemanager;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -12,7 +13,7 @@ class LfmItem
     private $isDirectory;
     private $mimeType = null;
 
-    private $columns = ['name', 'url', 'time','size','extension','opened','modified','location','type', 'icon', 'is_file', 'is_image', 'thumb_url'];
+    private $columns = ['name', 'url', 'time','size','extension','opened','files_count','modified','location','type', 'icon', 'is_file', 'is_image', 'thumb_url'];
     public $attributes = [];
 
     public function __construct(LfmPath $lfm, Lfm $helper, $isDirectory = false)
@@ -108,7 +109,15 @@ class LfmItem
 
     public function size()
     {
-        return $this->isFile() ? $this->humanFilesize($this->lfm->size()) : '';
+        $file_size = 0;
+        if ($this->isFile()){
+            $file_size = $this->lfm->size();
+        }elseif ($this->isDirectory()){
+            foreach( File::allFiles($this->path()) as $file) {
+                $file_size += $file->getSize();
+            }
+        }
+        return $this->humanFilesize($file_size);
     }
 
 
@@ -139,6 +148,13 @@ class LfmItem
         return null;
     }
 
+    public function filesCount()
+    {
+        if (!$this->isDirectory()) {
+            return null;
+        }
+        return count($this->lfm->files());
+    }
     public function icon()
     {
         if ($this->isDirectory()) {

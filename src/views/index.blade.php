@@ -10,75 +10,25 @@
   <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/dropzone.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/mime-icons.min.css') }}">
   <style>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/css/lfm.css')) !!}</style>
-
+  <style>
+    .dropzone {
+      min-height: 150px;
+      border: 0 !important;
+      background: #f7f7f7 !important;
+    }
+  </style>
   <link rel="stylesheet" type="text/css" href="{{asset('css/pages/app-file-manager.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/pages/widget-timeline.css')}}">
 @endsection
 @section('content')
   <div id="alerts"></div>
-{{--  <nav aria-label="breadcrumb" class="hide d-lg-block" id="breadcrumbs">--}}
-{{--    <ol class="breadcrumb">--}}
-{{--      <li class="breadcrumb-item invisible">Home</li>--}}
-{{--    </ol>--}}
-{{--  </nav>--}}
 
-  <nav id="breadcrumbs">
-    <div class="nav-wrapper">
-      <div class="col s12">
-        <a href="#!" class="breadcrumb">First</a>
-        <a href="#!" class="breadcrumb">Second</a>
-        <a href="#!" class="breadcrumb">Third</a>
-      </div>
-    </div>
-  </nav>
 
   <div class="section app-file-manager-wrapper">
     <!-- File Manager app overlay -->
     <div class="app-file-overlay"></div>
-{{--    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" id="nav">--}}
-{{--      <a class="navbar-brand invisible-lg hide d-lg-inline" id="to-previous">--}}
-{{--        <i class="fas fa-arrow-left fa-fw"></i>--}}
-{{--        <span class="hide d-lg-inline">{{ trans('laravel-filemanager::lfm.nav-back') }}</span>--}}
-{{--      </a>--}}
-{{--      <a class="navbar-brand d-block d-lg-none" id="show_tree">--}}
-{{--        <i class="fas fa-bars fa-fw"></i>--}}
-{{--      </a>--}}
-{{--      <a class="navbar-brand d-block d-lg-none" id="current_folder"></a>--}}
-{{--      <a id="loading" class="navbar-brand"><i class="fas fa-spinner fa-spin"></i></a>--}}
-{{--      <div class="ml-auto px-2">--}}
-{{--        <a class="navbar-link hide" id="multi_selection_toggle">--}}
-{{--          <i class="fa fa-check-double fa-fw"></i>--}}
-{{--          <span class="hide d-lg-inline">{{ trans('laravel-filemanager::lfm.menu-multiple') }}</span>--}}
-{{--        </a>--}}
-{{--      </div>--}}
-{{--      <a class="navbar-toggler collapsed border-0 px-1 py-2 m-0" data-toggle="collapse" data-target="#nav-buttons">--}}
-{{--        <i class="fas fa-cog fa-fw"></i>--}}
-{{--      </a>--}}
-{{--      <div class="collapse navbar-collapse flex-grow-0" id="nav-buttons">--}}
-{{--        <ul class="navbar-nav">--}}
-{{--          <li class="nav-item">--}}
-{{--            <a class="nav-link" data-display="grid">--}}
-{{--              <i class="fas fa-th-large fa-fw"></i>--}}
-{{--              <span>{{ trans('laravel-filemanager::lfm.nav-thumbnails') }}</span>--}}
-{{--            </a>--}}
-{{--          </li>--}}
-{{--          <li class="nav-item">--}}
-{{--            <a class="nav-link" data-display="list">--}}
-{{--              <i class="fas fa-list-ul fa-fw"></i>--}}
-{{--              <span>{{ trans('laravel-filemanager::lfm.nav-list') }}</span>--}}
-{{--            </a>--}}
-{{--          </li>--}}
-{{--          <li class="nav-item dropdown">--}}
-{{--            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--}}
-{{--              <i class="fas fa-sort fa-fw"></i>{{ trans('laravel-filemanager::lfm.nav-sort') }}--}}
-{{--            </a>--}}
-{{--            <div class="dropdown-menu dropdown-menu-right border-0"></div>--}}
-{{--          </li>--}}
-{{--        </ul>--}}
-{{--      </div>--}}
-{{--    </nav>--}}
 
-    <a id="loading" class="navbar-brand"><i class="fas fa-spinner fa-spin"></i></a>
+
 
 
 
@@ -108,6 +58,8 @@
       <!--left sidebar of file manager start -->
     </div>
     <!--/ sidebar left end -->
+
+
     <!-- content-right start -->
     <div class="content-right">
       <!-- file manager main content start -->
@@ -145,7 +97,7 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-sort fa-fw"></i>{{ trans('laravel-filemanager::lfm.nav-sort') }}
               </a>
-              <div class="dropdown-menu dropdown-menu-right border-0"></div>
+{{--              <div class="dropdown-menu dropdown-menu-right border-0"></div>--}}
             </div>
           </div>
           <!-- Header Icons Ends -->
@@ -154,8 +106,16 @@
 
         <!-- App File Content Starts -->
         <div class="app-file-content">
-          <h6 class="font-weight-700 mb-3">All Files</h6>
+{{--          <h6 class="font-weight-700 mb-3">All Files</h6>--}}
+          <nav id="breadcrumbs">
+            <div class="nav-wrapper">
+              <a id="loading" class="ml-1 navbar-brand"><i class="fas fa-spinner fa-spin"></i></a>
 
+              <div class="col s12 breadcrumb-items">
+                <a href="javascript:void(0)" class="breadcrumb">Home</a>
+              </div>
+            </div>
+          </nav>
 {{--          <!-- App File - Recent Accessed Files Section Starts -->--}}
 {{--          <span class="app-file-label">Recently Accessed Files</span>--}}
 {{--          <div class="row app-file-recent-access mb-3">--}}
@@ -231,9 +191,10 @@
 {{--          <!-- App File - Recent Accessed Files Section Ends -->--}}
 
           <!-- App File - Folder Section Starts -->
-          <span class="app-file-label">Folder</span>
-          <div class="row app-file-folder mb-3">
-            <div class="col xl3 l6 m4 s6">
+          <div class="app-folders">
+            <span class="app-file-label">Folder</span>
+            <div class="row app-file-folder mb-3 " id="folders-content"></div>
+            <div class="col xl3 l6 m4 s6 hide" id="folder-template">
               <div class="card box-shadow-none mb-1 app-file-info">
                 <div class="card-content">
                   <div class="app-file-folder-content cursor-pointer display-flex align-items-center">
@@ -241,7 +202,7 @@
                       <i class="material-icons">folder_open</i>
                     </div>
                     <div class="app-file-folder-details">
-                      <div class="app-file-folder-name font-weight-700">Project</div>
+                      <div class="app-file-folder-name font-weight-700 ">Project</div>
                       <div class="app-file-folder-size">2 files, 14.05mb</div>
                     </div>
                   </div>
@@ -252,21 +213,23 @@
           <!-- App File - Folder Section Ends -->
 
           <!-- App File - Files Section Starts -->
-          <label class="app-file-label">Files</label>
-          <div class="row app-file-files" id="content"></div>
-          <div  class="col xl3 l6 m3 s6 hide" id="item-template">
-            <div class="card box-shadow-none mb-1 app-file-info">
-              <div class="card-content">
-                <div class="app-file-content-logo grey lighten-4 square">
-                  <div class="fonticon">
-                    <i class="material-icons">more_vert</i>
+          <div class="app-files">
+            <label class="app-file-label">Files</label>
+            <div class="row app-file-files" id="content"></div>
+            <div  class="col xl3 l6 m3 s6 hide" id="item-template">
+              <div class="card box-shadow-none mb-1 app-file-info">
+                <div class="card-content">
+                  <div class="app-file-content-logo grey lighten-4 square">
+                    <div class="fonticon">
+                      <i class="material-icons">more_vert</i>
+                    </div>
+                    <img class="recent-file preview-file" src="{{asset('images/icon/pdf.png')}}" height="80"  alt="file">
                   </div>
-                  <img class="recent-file preview-file" src="{{asset('images/icon/pdf.png')}}" height="80"  alt="file">
-                </div>
-                <div class="app-file-details">
-                  <div class="app-file-name font-weight-700 item_name text-truncate">file.jpg</div>
-                  <div class="app-file-size">0kb</div>
-                  <div class="app-file-type text-muted font-weight-light text-truncate">Image File</div>
+                  <div class="app-file-details">
+                    <div class="app-file-name font-weight-700 item_name text-truncate">file.jpg</div>
+                    <div class="app-file-size">0kb</div>
+                    <div class="app-file-type text-muted font-weight-light text-truncate">Image File</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -279,13 +242,14 @@
       <!-- file manager main content end  -->
     </div>
     <!-- content-right end -->
+
+
     <!-- App File sidebar - Right section Starts -->
     <div class="app-file-sidebar-info">
       <div class="card box-shadow-none m-0 pb-1">
         <div class="card-header display-flex justify-content-between align-items-center">
           <h6 class="m-0 info--filename">Document.pdf</h6>
           <div class="app-file-action-icons display-flex align-items-center">
-            <i class="material-icons mr-10">delete</i>
             <i class="material-icons close-icon">close</i>
           </div>
         </div>
@@ -428,41 +392,89 @@
 
     <div id="fab"></div>
 
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">{{ trans('laravel-filemanager::lfm.title-upload') }}</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aia-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <form action="{{ route('unisharp.lfm.upload') }}" role='form' id='uploadForm' name='uploadForm' method='post' enctype='multipart/form-data' class="dropzone">
-              <div class="form-group" id="attachment">
-                <div class="controls text-center">
-                  <div class="input-group w-100">
-                    <a class="btn btn-primary w-100 text-white" id="upload-button">{{ trans('laravel-filemanager::lfm.message-choose') }}</a>
-                  </div>
-                </div>
-              </div>
-              <input type='hidden' name='working_dir' id='working_dir'>
-              <input type='hidden' name='type' id='type' value='{{ request("type") }}'>
-              <input type='hidden' name='_token' value='{{csrf_token()}}'>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
-          </div>
-        </div>
+    <!-- Modal Structure -->
+    <div id="actions-modal" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="images/yuna.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>First Line
+              <br> Second Line
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle">folder</i>
+            <span class="title">Title</span>
+            <p>First Line
+              <br> Second Line
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle green">assessment</i>
+            <span class="title">Title</span>
+            <p>First Line
+              <br> Second Line
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">play_arrow</i>
+            <span class="title">Title</span>
+            <p>First Line
+              <br> Second Line
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
       </div>
     </div>
 
-    <div class="modal fade" id="notify" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Modal Structure -->
+    <div id="uploadModal" class="modal" style="margin-top: 60px">
+      <div class="modal-content">
+        <h4>{{ trans('laravel-filemanager::lfm.title-upload') }}</h4>
+        <a class="btn btn-primary w-100 text-white" id="upload-button">{{ trans('laravel-filemanager::lfm.message-choose') }}</a>
+
+        <form action="{{ route('unisharp.lfm.upload') }}" role='form' id='uploadForm' name='uploadForm' method='post' enctype='multipart/form-data' class="dropzone">
+{{--          <div class="form-group" id="attachment">--}}
+{{--            <div class="controls text-center">--}}
+{{--              <div class="input-group w-100">--}}
+{{--                <a class="btn btn-primary w-100 text-white" id="upload-button">{{ trans('laravel-filemanager::lfm.message-choose') }}</a>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+          <input type='hidden' name='working_dir' id='working_dir'>
+          <input type='hidden' name='type' id='type' value='{{ request("type") }}'>
+          <input type='hidden' name='_token' value='{{csrf_token()}}'>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" class="modal-close waves-effect waves-green btn-flat">{{ trans('laravel-filemanager::lfm.btn-close') }}</a>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notify" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
-            <button type="button" class="btn btn-primary w-100" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-confirm') }}</button>
+            <button type="button" class="btn btn-secondary w-100  modal-close" >{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
+            <button type="button" class="btn btn-primary w-100  modal-close">{{ trans('laravel-filemanager::lfm.btn-confirm') }}</button>
           </div>
         </div>
       </div>
@@ -471,15 +483,12 @@
     <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title"></h4>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="form-control">
-          </div>
+          <h4 class="modal-title"></h4>
+          <input type="text" class="form-control">
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
-            <button type="button" class="btn btn-primary w-100" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-confirm') }}</button>
+            <button type="button" class="waves-effect waves-green btn-flat w-100 modal-close">{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
+            <button type="button" class="btn btn-primary w-100 modal-close">{{ trans('laravel-filemanager::lfm.btn-confirm') }}</button>
           </div>
         </div>
       </div>
@@ -523,11 +532,11 @@
 <script src="{{asset('js/scripts/app-file-manager.js')}}"></script>
 
 {{--  old--}}
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <script src="{{ asset('vendor/laravel-filemanager/js/cropper.min.js') }}"></script>
+{{--  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>--}}
+{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>--}}
+{{--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--}}
+{{--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>--}}
+{{--  <script src="{{ asset('vendor/laravel-filemanager/js/cropper.min.js') }}"></script>--}}
   <script src="{{ asset('vendor/laravel-filemanager/js/dropzone.min.js') }}"></script>
   <script>
     var lang = {!! json_encode(trans('laravel-filemanager::lfm')) !!};
